@@ -41,13 +41,13 @@ class CabinPressureSensor : public Sensor { //Defines new class "CabinPressureSe
 class SensorFactory { //Defines new class "SensorFactory"
     public: //Ensure accessibility outside the class "SensoryFactory"
         static Sensor* createSensor(const std::string& type) { //Implements a static function that matches certain string inputs to an output
-            if (type == "FuelFlow") { //Checks if "FuleFlow" string was inputted
+            if (type == "Fuel Flow") { //Checks if "FuleFlow" string was inputted
                 return new FuelFlowSensor(); // Return a pointer to the "FuelFlowSensor" class
             }
             else if (type == "AOA") { //Checks if "AOA" string was inputted
                 return new AOASensor(); // Return a pointer to the "AOASensor" class
             }
-            else if (type == "CabinPressure") { //Checks if "CabinPressure" string was inputted
+            else if (type == "Cabin Pressure") { //Checks if "CabinPressure" string was inputted
                 return new CabinPressureSensor(); // Return a pointer to the "CabinPressureSensor" class
             }
             else { //If none of the above strings matches
@@ -67,7 +67,30 @@ class AerospaceControlSystem { //Defines new class "AerospaceControlSystem"
             for (Sensor* sensor : sensors) { //Loop to go through all 3 sensors in the system
                 sensor->gatherData(); //Collects data from the current sensor
                 sensor->processData(); //Process the collected data from current sensor
+                std::cout << "Adjusting controls based on sensor data" << std::endl; //Prints out text to the user
             }
-            std::cout << "Adjusting controls based on sensor data" << std::endl; //Prints out text to the user
         }
+};
+//1.5
+int main() {
+    AerospaceControlSystem ctrlSys; //Start an instance of the class "AerospaceControlSystem"
+    Sensor* fuelFlowSensor = SensorFactory::createSensor("Fuel Flow"); //Create a fuel flow sensor using the class "SensorFactory"
+    Sensor* aoaSensor = SensorFactory::createSensor("AOA"); //Create a angle of attack sensor using the class "SensorFactory"
+    Sensor* cabinPressureSensor = SensorFactory::createSensor("Cabin Pressure"); //Create a cabin pressure sensor using the class "SensorFactory"
+    //Checks if each created sensor are not null pointers and then adds them to the control system
+    if(fuelFlowSensor != nullptr) {
+        ctrlSys.addSensor(fuelFlowSensor);
+    }
+    if(aoaSensor != nullptr) {
+        ctrlSys.addSensor(aoaSensor);
+    }
+    if(cabinPressureSensor != nullptr) {
+        ctrlSys.addSensor(cabinPressureSensor);
+    }
+    ctrlSys.monitorAndAdjust(); //Monitors and adjusts the control system based on the sensor data
+    // Cleans up dynmanically allocated memory
+    delete fuelFlowSensor;
+    delete aoaSensor;
+    delete cabinPressureSensor;
+    return 0; //Returns 0 for successful execution
 };
