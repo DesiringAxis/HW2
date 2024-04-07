@@ -1,0 +1,6 @@
+project(HW2)
+cmake_minimum_required(VERSION 3.29.1)
+find_package(Python3 3.12.2 COMPONENTS Interpreter Development NumPy REQUIRED)
+include_directories((PYTHON_INCLUDE_DIRS) include)
+add_executable(output src/Problem4.cpp)
+target_link_libraries(output Python3::NumPy)
