@@ -1,0 +1,4 @@
+Some issues that might be obtained during the development of the program is making it accuarate enough for real-life scenarios due to their complexity. Other issues that will happen
+if other actions in the program take more time would be multiple actions trying to happen at the same time, leading to the issue of shared resources. This would also make the code 
+more complex and starve resources. The added time in the other actions could also cause inefficent use of the runway. These issues could be migatited by adding a queue system that
+uses timeouts to avoid overusages of resources and ensuring the proper use of the runway.

@@ -1,0 +1,4 @@
+Some issues would arise from assigning a robot a new task as soon as it done with its previous task. The first issue would be that this robot would monopolize the usage of the
+tools next to it, this would prevent the two robots next to it to not be able to do their task. The second issue would be not having a efficient order for the robots to do their
+tasks, this would cause a longer time to complete all tasks. To prevent these issues, you could implement a schedule that would lower the time it takes to get the tasks done. You 
+could also start a priority system to make sure the tasks that need to be done first are done first.
